@@ -1,14 +1,14 @@
 package com.gb.mynotesapp.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gb.mynotesapp.R;
 import com.gb.mynotesapp.data.Constants;
@@ -19,7 +19,6 @@ import com.gb.mynotesapp.recycler.NotesAdapter;
 
 public class NotesListActivity extends AppCompatActivity implements NotesAdapter.OnNoteClickListener {
 
-//    private Repo repository = new InMemoryRepoImpl();
     private Repo repository = InMemoryRepoImpl.getInstance();
     private RecyclerView list;
     private NotesAdapter adapter;
@@ -74,13 +73,30 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         return super.onCreateOptionsMenu(menu);
     }
 
+    /*
+    * Method to create a new activity
+    */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.main_create:
-                // TODO start EditNoteActivity
-                return true;
+        if (item.getItemId() == R.id.main_create) {
+            Intent intent = new Intent(this, EditNoteActivity.class);
+            Note note = new Note("Enter your title...", "Enter your description...");
+            intent.putExtra(Constants.NOTE, note);
+            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /*
+    * Method to get updated list of notes
+    */
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        adapter.setNotes(repository.getAll());
+        list.setAdapter(adapter);
+
     }
 }
