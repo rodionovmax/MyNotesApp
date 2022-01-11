@@ -28,7 +28,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
 
-        fillRepo();
+//        fillRepo();
 
         adapter = new NotesAdapter();
         adapter.setNotes(repository.getAll());
@@ -36,29 +36,28 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         adapter.setOnClickListener(this);
 
         list = findViewById(R.id.list);
-//        list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
     }
 
-    private void fillRepo() {
-        repository.create(new Note("Title 1", "Description 1"));
-        repository.create(new Note("Title 2", "Description 2"));
-        repository.create(new Note("Title 3", "Description 3"));
-        repository.create(new Note("Title 4", "Description 4"));
-        repository.create(new Note("Title 5", "Description 5"));
-        repository.create(new Note("Title 6", "Description 6"));
-        repository.create(new Note("Title 7", "Description 7"));
-        repository.create(new Note("Title 8", "Description 8"));
-        repository.create(new Note("Title 9", "Description 9"));
-        repository.create(new Note("Title 10", "Description 10"));
-        repository.create(new Note("Title 11", "Description 11"));
-        repository.create(new Note("Title 12", "Description 12"));
-        repository.create(new Note("Title 13", "Description 13"));
-        repository.create(new Note("Title 14", "Description 14"));
-        repository.create(new Note("Title 15", "Description 15"));
-        repository.create(new Note("Title 16", "Description 16"));
-    }
+//    private void fillRepo() {
+//        repository.create(new Note("Title 1", "Description 1" ));
+//        repository.create(new Note("Title 2", "Description 2"));
+//        repository.create(new Note("Title 3", "Description 3"));
+//        repository.create(new Note("Title 4", "Description 4"));
+//        repository.create(new Note("Title 5", "Description 5"));
+//        repository.create(new Note("Title 6", "Description 6"));
+//        repository.create(new Note("Title 7", "Description 7"));
+//        repository.create(new Note("Title 8", "Description 8"));
+//        repository.create(new Note("Title 9", "Description 9"));
+//        repository.create(new Note("Title 10", "Description 10"));
+//        repository.create(new Note("Title 11", "Description 11"));
+//        repository.create(new Note("Title 12", "Description 12"));
+//        repository.create(new Note("Title 13", "Description 13"));
+//        repository.create(new Note("Title 14", "Description 14"));
+//        repository.create(new Note("Title 15", "Description 15"));
+//        repository.create(new Note("Title 16", "Description 16"));
+//    }
 
     @Override
     public void onNoteClick(Note note) {

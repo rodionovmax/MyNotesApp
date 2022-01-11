@@ -45,7 +45,6 @@ public class EditNoteActivity extends AppCompatActivity implements View.OnClickL
             if (note.getId() != null) {
                 id = note.getId();
             }
-            Log.d(TAG, id + " of updating activity");
             title.setText(note.getTitle());
             description.setText(note.getDescription());
         }
@@ -67,6 +66,7 @@ public class EditNoteActivity extends AppCompatActivity implements View.OnClickL
         } else {
             repository.update(note);
         }
+        Log.d(TAG, id + " of the note");
         onBackPressed();
     }
 }
